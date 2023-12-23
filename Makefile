@@ -15,11 +15,11 @@ psql_down:
 	docker stop simplebank-postgres
 
 # run migrations
-migrateup:
+migrate_up:
 	migrate -path db/migration -database "postgresql://user:123456@localhost:5432/simple_bank?sslmode=disable" -verbose up
 
 # remove migrations
-migratedown:
+migrate_down:
 	migrate -path db/migration -database "postgresql://user:123456@localhost:5432/simple_bank?sslmode=disable" -verbose down
 
 sqlc:
@@ -28,4 +28,4 @@ sqlc:
 test:
 	go test ./... -v -cover
 
-.PHONY: psql_run psql_up psql_down psql_create_db migrateup migratedown sqlc test
+.PHONY: psql_run psql_up psql_down psql_create_db migrate_up migrate_down sqlc test
